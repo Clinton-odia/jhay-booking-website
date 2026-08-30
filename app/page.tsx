@@ -10,7 +10,7 @@ export default function Home() {
     <main className="min-h-screen flex flex-col bg-[var(--ink)]">
       <Header />
       <Hero />
-      <PortfolioGrid />
+      <PortfolioGrid isPreview={true} />
       <PricingSection />
       <JobTicketForm />
       <Footer />

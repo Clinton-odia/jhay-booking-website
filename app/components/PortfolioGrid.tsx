@@ -2,10 +2,15 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { portfolioItems, PortfolioItem, CategoryType } from "../data/portfolioData";
 import PortfolioModal from "./PortfolioModal";
 
-export default function PortfolioGrid() {
+interface PortfolioGridProps {
+  isPreview?: boolean;
+}
+
+export default function PortfolioGrid({ isPreview = false }: PortfolioGridProps) {
   const [selectedCategory, setSelectedCategory] = useState<"all" | CategoryType>("all");
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
 
@@ -20,6 +25,18 @@ export default function PortfolioGrid() {
   const illustrationItems = portfolioItems.filter((item) => item.category === "illustration");
   const logoItems = portfolioItems.filter((item) => item.category === "logo");
 
+  // Curated preview items for homepage (8 items across categories)
+  const previewItems = [
+    coverArtItems[0], // Soul & Rhythm
+    coverArtItems[1], // Golden Hour
+    illustrationItems[1], // Alien Abduction
+    illustrationItems[5], // Spider Thug
+    logoItems[2], // Cayo Drip
+    coverArtItems[9], // Khaid NWW
+    illustrationItems[3], // Gang Study
+    logoItems[4], // King Elvis
+  ].filter(Boolean);
+
   const filteredItems =
     selectedCategory === "all"
       ? portfolioItems
@@ -31,38 +48,66 @@ export default function PortfolioGrid() {
         {/* Section Header */}
         <div className="section-head text-center mb-10">
           <div className="eyebrow font-mono text-xs text-[var(--yellow)] tracking-[0.12em] uppercase mb-[18px] inline-flex items-center gap-[10px] before:content-[''] before:w-5 before:h-[2px] before:bg-[var(--yellow)] after:content-[''] after:w-5 after:h-[2px] after:bg-[var(--yellow)]">
-            Selected Works &amp; Portfolio
+            {isPreview ? "Selected Works Preview" : "Complete Artwork Archive"}
           </div>
           <h2 className="text-[clamp(36px,6vw,56px)] font-anton uppercase text-[var(--paper)]">
-            Visual Catalog
+            {isPreview ? "Recent Highlights" : "Visual Catalog"}
           </h2>
           <p className="max-w-[54ch] mx-auto text-[var(--muted)] text-[16px] mt-3">
-            Explore recent cover art commissions, comic illustrations, and brand marks. Click any artwork for a high-res preview.
+            {isPreview
+              ? "A preview selection of cover art, comic illustrations, and brand marks. Click any artwork for a high-res preview or view the full archive below."
+              : "Explore all 33 cover art commissions, character studies, and logo designs. Filter by category or click any piece to inspect details."}
           </p>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((cat) => {
-            const isActive = selectedCategory === cat.key;
-            return (
-              <button
-                key={cat.key}
-                onClick={() => setSelectedCategory(cat.key as "all" | CategoryType)}
-                className={`font-mono text-xs uppercase tracking-wider px-5 py-3 border-2 transition-all duration-150 ${
-                  isActive
-                    ? "bg-[var(--red)] border-[var(--red)] text-[var(--paper)] font-bold shadow-[4px_4px_0_var(--paper)]"
-                    : "bg-transparent border-[var(--paper-2)] text-[var(--paper-2)] hover:border-[var(--paper)] hover:text-[var(--paper)]"
-                }`}
-              >
-                {cat.label}
-              </button>
-            );
-          })}
-        </div>
+        {/* Filter Tabs (only shown on Full Portfolio view) */}
+        {!isPreview && (
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {categories.map((cat) => {
+              const isActive = selectedCategory === cat.key;
+              return (
+                <button
+                  key={cat.key}
+                  onClick={() => setSelectedCategory(cat.key as "all" | CategoryType)}
+                  className={`font-mono text-xs uppercase tracking-wider px-5 py-3 border-2 transition-all duration-150 ${
+                    isActive
+                      ? "bg-[var(--red)] border-[var(--red)] text-[var(--paper)] font-bold shadow-[4px_4px_0_var(--paper)]"
+                      : "bg-transparent border-[var(--paper-2)] text-[var(--paper-2)] hover:border-[var(--paper)] hover:text-[var(--paper)]"
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
+          </div>
+        )}
 
-        {/* Filtered Grid OR Sectioned Display */}
-        {selectedCategory === "all" ? (
+        {/* Grid Display */}
+        {isPreview ? (
+          /* Homepage Preview Mode (8 Curated Items) */
+          <div>
+            <div className="grid grid-cols-2 min-[640px]:grid-cols-4 gap-4 md:gap-5 mb-12">
+              {previewItems.map((item) => (
+                <PortfolioTile
+                  key={item.id}
+                  item={item}
+                  onClick={() => setActiveModalItem(item)}
+                />
+              ))}
+            </div>
+
+            {/* View Full Portfolio CTA */}
+            <div className="text-center pt-4 border-t-2 border-dashed border-[var(--paper-2)]/30">
+              <Link
+                href="/portfolio"
+                className="stamp-btn inline-flex items-center gap-3 text-lg py-4 px-8"
+              >
+                VIEW FULL PORTFOLIO ARCHIVE (33 PIECES) →
+              </Link>
+            </div>
+          </div>
+        ) : selectedCategory === "all" ? (
+          /* Full Archive - Sectioned View */
           <div className="space-y-16">
             {/* Section 1: Cover Art */}
             <div>
@@ -128,7 +173,7 @@ export default function PortfolioGrid() {
             </div>
           </div>
         ) : (
-          /* Filtered View */
+          /* Full Archive - Filtered View */
           <div className="grid grid-cols-2 min-[640px]:grid-cols-3 min-[1024px]:grid-cols-4 gap-4 md:gap-5">
             {filteredItems.map((item) => (
               <PortfolioTile

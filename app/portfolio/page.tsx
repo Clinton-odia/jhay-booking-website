@@ -8,16 +8,16 @@ export default function PortfolioPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[var(--ink)]">
       <Header />
-      
+
       {/* Portfolio Top Bar */}
       <section className="bg-[var(--paper)] py-8 border-b-2 border-[var(--ink)]">
         <div className="wrap flex justify-between items-center flex-wrap gap-4">
           <div>
             <span className="font-mono text-xs text-[var(--red)] font-bold uppercase tracking-widest">
-              Full Artwork Archive
+              Full Artwork Archive (33 Pieces)
             </span>
             <h1 className="font-anton text-4xl uppercase text-[var(--ink)]">
-              Portfolio &amp; Showcase
+              Complete Portfolio &amp; Showcase
             </h1>
           </div>
           <Link
@@ -29,7 +29,7 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      <PortfolioGrid />
+      <PortfolioGrid isPreview={false} />
       <JobTicketForm />
       <Footer />
     </main>
