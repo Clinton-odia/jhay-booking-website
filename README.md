@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jhay Sanyay Studio — Visual Artist & Illustrator Booking Website
 
-## Getting Started
+A modern, responsive portfolio and commission booking website for **Jhay Sanyay** — a visual artist and illustrator based in Nigeria specializing in single/album cover art, comic illustrations, and brand identity design.
 
-First, run the development server:
+Rebuilt from legacy static HTML into a high-performance **Next.js 16 + TypeScript** web application using **Tailwind CSS v4**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## ✨ Features
+
+- **Categorized Portfolio Showcase**:
+  - 33 portfolio assets categorized into 3 distinct sections: **Cover Art**, **Illustrations & Comic Art**, and **Logos & Brand Marks**.
+  - Interactive category filter tabs (`All Work`, `Cover Art`, `Illustrations`, `Logos & Branding`).
+  
+- **Interactive Lightbox Preview**:
+  - Click any artwork piece to open a high-resolution preview modal with service recommendations and direct "Book This Style" shortcuts.
+
+- **Client-Side Job Ticket Generator**:
+  - Custom commission booking form with auto-generated Ticket IDs (e.g. `260830-84`).
+  - Pre-formatted `mailto:` email generation for instant client quotes.
+  - Quick-copy ticket summary to clipboard and direct Instagram DM link integration (`@jhaysanyay`).
+
+- **Optimized Next.js Image Delivery**:
+  - All visual assets utilize Next.js `<Image />` (`next/image`) for automatic optimization, responsive layout stability, and hover zoom animations.
+
+- **Design System & Aesthetics**:
+  - Vintage editorial aesthetic using custom HSL design tokens (`--ink`, `--paper`, `--paper-2`, `--red`, `--yellow`, `--cyan`).
+  - Google Fonts integrated via `next/font/google` (`Anton`, `Work Sans`, `Space Mono`).
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) & Vanilla CSS design tokens
+- **Typography**: Google Fonts (`Anton`, `Work Sans`, `Space Mono`)
+- **Deployment & Optimization**: Next.js Static & Server Rendering (`next/image`)
+
+---
+
+## 📁 Project Structure
+
+```text
+jhay-booking-website/
+├── app/
+│   ├── components/
+│   │   ├── ContactSheet.tsx      # Vintage 3x3 photo frame grid
+│   │   ├── Footer.tsx            # Studio footer with linktree integration
+│   │   ├── Header.tsx            # Sticky header with navigation links
+│   │   ├── Hero.tsx              # Main headline and call-to-action buttons
+│   │   ├── JobTicketForm.tsx     # Order form & mailto ticket generator
+│   │   ├── PortfolioGrid.tsx     # Categorized gallery with section headers
+│   │   ├── PortfolioModal.tsx    # Lightbox preview modal component
+│   │   └── PricingSection.tsx    # Rate menu with ticket layout
+│   ├── data/
+│   │   └── portfolioData.ts      # Strongly-typed dataset for 33 portfolio pieces
+│   ├── portfolio/
+│   │   └── page.tsx              # Dedicated /portfolio route
+│   ├── globals.css               # Global CSS variables & ticket styles
+│   ├── icon.svg                  # Custom studio favicon
+│   ├── layout.tsx                # Root layout & Google Fonts loader
+│   └── page.tsx                  # Home page assembly
+├── public/
+│   └── images/
+│       ├── cover-art/            # Single & album cover art assets
+│       ├── illustrations/        # Comic panels and character studies
+│       └── logos/                # Brand identity & emblem logos
+├── README.md
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisites
+- Node.js `18.x` or higher
+- `npm` or `yarn` / `pnpm`
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the Repository**:
+   ```bash
+   git clone git@github.com:Clinton-odia/jhay-booking-website.git
+   cd jhay-booking-website
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Run Development Server**:
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Deploy on Vercel
+4. **Build for Production**:
+   ```bash
+   npm run build
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Start Production Server**:
+   ```bash
+   npm start
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📜 License
+
+Created for **Jhay Sanyay Studio**. All artwork rights belong to the creator.
