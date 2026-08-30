@@ -1,8 +1,20 @@
+import type { Metadata } from "next";
 import Header from "../components/Header";
 import PortfolioGrid from "../components/PortfolioGrid";
 import JobTicketForm from "../components/JobTicketForm";
 import Footer from "../components/Footer";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Full Artwork Portfolio (33 Pieces)",
+  description:
+    "Explore the complete 33-piece portfolio archive by Jhay Sanyay, featuring cover art, comic illustrations, character studies, and logo marks.",
+  openGraph: {
+    title: "Full Artwork Portfolio — Jhay Sanyay Studio",
+    description:
+      "Explore 33 custom cover art designs, comic panel studies, and brand marks by Jhay Sanyay.",
+  },
+};
 
 export default function PortfolioPage() {
   return (
