@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function JobTicketForm() {
   const [orderId, setOrderId] = useState<string>("");
@@ -87,16 +88,28 @@ ${brief}`;
   return (
     <section id="order" className="ticket-build-section py-[72px] bg-[var(--ink)] text-[var(--paper)]">
       <div className="wrap max-w-[800px] mx-auto">
-        <div className="section-head mb-8 text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
+          className="section-head mb-8 text-center"
+        >
           <div className="eyebrow font-mono text-xs text-[var(--yellow)] tracking-[0.12em] uppercase mb-[18px] inline-flex items-center gap-[10px] before:content-[''] before:w-5 before:h-[2px] before:bg-[var(--yellow)] after:content-[''] after:w-5 after:h-[2px] after:bg-[var(--yellow)]">
             Commission Order Form
           </div>
           <h2 className="text-[clamp(36px,6vw,56px)] font-anton uppercase text-[var(--paper)]">
             Create Job Ticket
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="ticket relative bg-[var(--ink)] color-[var(--paper)] border-2 border-[var(--paper)] p-6 md:p-12 shadow-[12px_12px_0_var(--red)]">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ type: "spring", stiffness: 100 }}
+          className="ticket relative bg-[var(--ink)] color-[var(--paper)] border-2 border-[var(--paper)] p-6 md:p-12 shadow-[12px_12px_0_var(--red)]"
+        >
           {/* Corner Notches */}
           <div className="notch tl"></div>
           <div className="notch tr"></div>
@@ -124,7 +137,7 @@ ${brief}`;
                   placeholder="e.g. Starboy / Divine"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-[var(--ink)] border-2 border-[var(--paper-2)] p-3 text-[var(--paper)] font-sans focus:outline-none focus:border-[var(--yellow)] transition-colors"
+                  className="w-full bg-[var(--ink)] border-2 border-[var(--paper-2)] p-3 text-[var(--paper)] font-sans focus:outline-none focus:border-[var(--yellow)] focus:-translate-y-1 transition-all duration-200"
                 />
               </div>
 
@@ -138,7 +151,7 @@ ${brief}`;
                   placeholder="e.g. @artist / email@domain.com"
                   value={contact}
                   onChange={(e) => setContact(e.target.value)}
-                  className="w-full bg-[var(--ink)] border-2 border-[var(--paper-2)] p-3 text-[var(--paper)] font-sans focus:outline-none focus:border-[var(--yellow)] transition-colors"
+                  className="w-full bg-[var(--ink)] border-2 border-[var(--paper-2)] p-3 text-[var(--paper)] font-sans focus:outline-none focus:border-[var(--yellow)] focus:-translate-y-1 transition-all duration-200"
                 />
               </div>
             </div>
@@ -151,7 +164,7 @@ ${brief}`;
                 <select
                   value={service}
                   onChange={(e) => setService(e.target.value)}
-                  className="w-full bg-[var(--ink)] border-2 border-[var(--paper-2)] p-3 text-[var(--paper)] font-sans focus:outline-none focus:border-[var(--yellow)] transition-colors"
+                  className="w-full bg-[var(--ink)] border-2 border-[var(--paper-2)] p-3 text-[var(--paper)] font-sans focus:outline-none focus:border-[var(--yellow)] focus:-translate-y-1 transition-all duration-200"
                 >
                   <option value="Single Cover Art">Single Cover Art</option>
                   <option value="EP / Album Art">EP / Album Art</option>
@@ -170,7 +183,7 @@ ${brief}`;
                   placeholder="e.g. Midnight Riddim EP"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full bg-[var(--ink)] border-2 border-[var(--paper-2)] p-3 text-[var(--paper)] font-sans focus:outline-none focus:border-[var(--yellow)] transition-colors"
+                  className="w-full bg-[var(--ink)] border-2 border-[var(--paper-2)] p-3 text-[var(--paper)] font-sans focus:outline-none focus:border-[var(--yellow)] focus:-translate-y-1 transition-all duration-200"
                 />
               </div>
             </div>
@@ -185,7 +198,7 @@ ${brief}`;
                   placeholder="e.g. Oct 15th / ASAP"
                   value={deadline}
                   onChange={(e) => setDeadline(e.target.value)}
-                  className="w-full bg-[var(--ink)] border-2 border-[var(--paper-2)] p-3 text-[var(--paper)] font-sans focus:outline-none focus:border-[var(--yellow)] transition-colors"
+                  className="w-full bg-[var(--ink)] border-2 border-[var(--paper-2)] p-3 text-[var(--paper)] font-sans focus:outline-none focus:border-[var(--yellow)] focus:-translate-y-1 transition-all duration-200"
                 />
               </div>
 
@@ -196,7 +209,7 @@ ${brief}`;
                 <select
                   value={contactPref}
                   onChange={(e) => setContactPref(e.target.value)}
-                  className="w-full bg-[var(--ink)] border-2 border-[var(--paper-2)] p-3 text-[var(--paper)] font-sans focus:outline-none focus:border-[var(--yellow)] transition-colors"
+                  className="w-full bg-[var(--ink)] border-2 border-[var(--paper-2)] p-3 text-[var(--paper)] font-sans focus:outline-none focus:border-[var(--yellow)] focus:-translate-y-1 transition-all duration-200"
                 >
                   <option value="Email">Email</option>
                   <option value="Instagram DM">Instagram DM</option>
@@ -215,19 +228,28 @@ ${brief}`;
                 placeholder="Describe your vision, color themes, reference links, mood or key characters..."
                 value={brief}
                 onChange={(e) => setBrief(e.target.value)}
-                className="w-full bg-[var(--ink)] border-2 border-[var(--paper-2)] p-3 text-[var(--paper)] font-sans focus:outline-none focus:border-[var(--yellow)] transition-colors"
+                className="w-full bg-[var(--ink)] border-2 border-[var(--paper-2)] p-3 text-[var(--paper)] font-sans focus:outline-none focus:border-[var(--yellow)] focus:-translate-y-1 transition-all duration-200"
               />
             </div>
 
             <div className="text-center pt-4">
-              <button type="submit" className="stamp-btn">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                type="submit" 
+                className="stamp-btn"
+              >
                 STAMP &amp; GENERATE TICKET
-              </button>
+              </motion.button>
             </div>
           </form>
 
           {generatedTicket && (
-            <div className="mt-10 p-6 bg-[var(--paper)] text-[var(--ink)] border-2 border-[var(--ink)] transition-all">
+            <motion.div 
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              className="mt-10 p-6 bg-[var(--paper)] text-[var(--ink)] border-2 border-[var(--ink)] overflow-hidden"
+            >
               <div className="font-anton text-2xl uppercase mb-2 text-[var(--red)]">
                 Ticket Stamp Validated: #{generatedTicket.id}
               </div>
@@ -236,33 +258,39 @@ ${brief}`;
               </p>
 
               <div className="flex flex-wrap gap-3">
-                <a
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   href={generatedTicket.mailtoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-solid !border-[var(--red)]"
                 >
                   Send via Email (mailto)
-                </a>
-                <a
+                </motion.a>
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   href={generatedTicket.igUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn !border-[var(--ink)] !text-[var(--ink)] hover:!bg-[var(--ink)] hover:!text-[var(--paper)]"
                 >
                   Send via Instagram DM
-                </a>
-                <button
+                </motion.a>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   type="button"
                   onClick={handleCopySummary}
                   className="btn !border-[var(--ink)] !text-[var(--ink)] hover:!bg-[var(--ink)] hover:!text-[var(--paper)]"
                 >
                   {generatedTicket.copied ? "Copied to Clipboard! ✓" : "Copy Ticket Summary"}
-                </button>
+                </motion.button>
               </div>
-            </div>
+            </motion.div>
           )}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

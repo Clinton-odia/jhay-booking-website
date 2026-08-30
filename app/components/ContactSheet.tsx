@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const frames = [
   { id: 1, src: "/images/cover-01.jpg", alt: "Frame 01 - Cover Art" },
@@ -14,7 +17,19 @@ const frames = [
 
 export default function ContactSheet() {
   return (
-    <div className="sheet relative bg-[var(--paper)] p-5 border-2 border-[var(--ink)] rotate-[1.2deg] shadow-[10px_10px_0_var(--red)]">
+    <motion.div 
+      animate={{ 
+        y: [0, -15, 0], 
+        x: [0, 5, 0],
+        rotate: [1.2, 0.5, 1.2] 
+      }}
+      transition={{ 
+        duration: 5, 
+        repeat: Infinity, 
+        ease: "easeInOut" 
+      }}
+      className="sheet relative bg-[var(--paper)] p-5 border-2 border-[var(--ink)] shadow-[10px_10px_0_var(--red)]"
+    >
       <div className="sheet-label font-mono text-[10px] text-[var(--ink)] uppercase tracking-[0.08em] mb-[10px] flex justify-between">
         <span>CONTACT SHEET</span>
         <span>09 FRAMES</span>
@@ -35,6 +50,6 @@ export default function ContactSheet() {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

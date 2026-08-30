@@ -87,11 +87,12 @@ export default function PortfolioGrid({ isPreview = false }: PortfolioGridProps)
           /* Homepage Preview Mode (8 Curated Items) */
           <div>
             <div className="grid grid-cols-2 min-[640px]:grid-cols-4 gap-4 md:gap-5 mb-12">
-              {previewItems.map((item) => (
+              {previewItems.map((item, index) => (
                 <PortfolioTile
                   key={item.id}
                   item={item}
                   onClick={() => setActiveModalItem(item)}
+                  index={index}
                 />
               ))}
             </div>
@@ -120,11 +121,12 @@ export default function PortfolioGrid({ isPreview = false }: PortfolioGridProps)
                 </h3>
               </div>
               <div className="grid grid-cols-2 min-[640px]:grid-cols-3 min-[1024px]:grid-cols-4 gap-4 md:gap-5">
-                {coverArtItems.map((item) => (
+                {coverArtItems.map((item, index) => (
                   <PortfolioTile
                     key={item.id}
                     item={item}
                     onClick={() => setActiveModalItem(item)}
+                    index={index}
                   />
                 ))}
               </div>
@@ -141,11 +143,12 @@ export default function PortfolioGrid({ isPreview = false }: PortfolioGridProps)
                 </h3>
               </div>
               <div className="grid grid-cols-2 min-[640px]:grid-cols-3 min-[1024px]:grid-cols-4 gap-4 md:gap-5">
-                {illustrationItems.map((item) => (
+                {illustrationItems.map((item, index) => (
                   <PortfolioTile
                     key={item.id}
                     item={item}
                     onClick={() => setActiveModalItem(item)}
+                    index={index}
                   />
                 ))}
               </div>
@@ -162,11 +165,12 @@ export default function PortfolioGrid({ isPreview = false }: PortfolioGridProps)
                 </h3>
               </div>
               <div className="grid grid-cols-2 min-[640px]:grid-cols-3 min-[1024px]:grid-cols-4 gap-4 md:gap-5">
-                {logoItems.map((item) => (
+                {logoItems.map((item, index) => (
                   <PortfolioTile
                     key={item.id}
                     item={item}
                     onClick={() => setActiveModalItem(item)}
+                    index={index}
                   />
                 ))}
               </div>
@@ -175,11 +179,12 @@ export default function PortfolioGrid({ isPreview = false }: PortfolioGridProps)
         ) : (
           /* Full Archive - Filtered View */
           <div className="grid grid-cols-2 min-[640px]:grid-cols-3 min-[1024px]:grid-cols-4 gap-4 md:gap-5">
-            {filteredItems.map((item) => (
+            {filteredItems.map((item, index) => (
               <PortfolioTile
                 key={item.id}
                 item={item}
                 onClick={() => setActiveModalItem(item)}
+                index={index}
               />
             ))}
           </div>
@@ -195,9 +200,15 @@ export default function PortfolioGrid({ isPreview = false }: PortfolioGridProps)
   );
 }
 
-function PortfolioTile({ item, onClick }: { item: PortfolioItem; onClick: () => void }) {
+import { motion } from "framer-motion";
+
+function PortfolioTile({ item, onClick, index = 0 }: { item: PortfolioItem; onClick: () => void; index?: number }) {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: (index % 4) * 0.1, type: "spring", stiffness: 80 }}
       onClick={onClick}
       className="group relative aspect-square overflow-hidden bg-[var(--paper-2)] border-2 border-[var(--paper-2)]/20 hover:border-[var(--yellow)] cursor-pointer transition-all duration-200 shadow-md"
     >
@@ -217,6 +228,6 @@ function PortfolioTile({ item, onClick }: { item: PortfolioItem; onClick: () => 
           {item.title}
         </h4>
       </div>
-    </div>
+    </motion.div>
   );
 }
