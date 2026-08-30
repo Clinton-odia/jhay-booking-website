@@ -29,8 +29,8 @@ export default function Footer() {
             Job Ticket
           </a>
         </div>
-        <div className="text-[10px] text-[var(--muted)] mt-[20px] tracking-wider uppercase">
-          designed by <a href="https://www.instagram.com/buildwithclinton/" target="_blank" rel="noopener noreferrer" className="text-[var(--paper)] hover:text-[var(--yellow)] hover:underline transition-colors">buildwithclinton</a>
+        <div className="text-[12px] text-[var(--yellow)] mt-[20px] tracking-wider uppercase">
+          designed by <a href="https://www.instagram.com/buildwithclinton/" target="_blank" rel="noopener noreferrer" className="text-[var(--paper)] hover:text-[var(--yellow)] hover:underline transition-colors">buildwithclinton ↗</a>
         </div>
       </div>
     </footer>
