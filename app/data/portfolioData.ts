@@ -134,7 +134,7 @@ export const portfolioItems: PortfolioItem[] = [
     title: "Vibe Check Cover",
     category: "cover-art",
     categoryLabel: "Cover Art",
-    imageSrc: "/images/cover-art/IMG_1162.png",
+    imageSrc: "/images/cover-art/IMG_1162.jpg",
     serviceType: "Single Cover Art",
     description: "Stylized portrait cover art for music digital release.",
   },
