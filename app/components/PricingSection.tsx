@@ -6,19 +6,19 @@ const pricingItems = [
   {
     name: "Single Cover Art",
     turnaround: "3–5 days",
-    price: "₦40,000 / $60",
+    price: "₦60,000 / $80",
     desc: "One track, full concept + 2 revisions. High-res final deliverable.",
   },
   {
     name: "EP / Album Art",
     turnaround: "7–10 days",
-    price: "₦60,000 / $90",
+    price: "₦80,000 / $100",
     desc: "Front cover, back/tracklist, plus social media promo crop variants.",
   },
   {
     name: "Logo / Brand Mark",
     turnaround: "5–7 days",
-    price: "from ₦35,000",
+    price: "₦45,000 / $60",
     desc: "Primary mark, 2 initial concepts, source files + usage guide.",
   },
   {
@@ -30,7 +30,7 @@ const pricingItems = [
   {
     name: "Motion / Animated Cover",
     turnaround: "7–14 days",
-    price: "from ₦50,000",
+    price: "₦60,000 / $80",
     desc: "Looping animated MP4/GIF version of a still cover for Spotify Canvas & IG.",
   },
 ];
