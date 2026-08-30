@@ -204,8 +204,10 @@ import { motion } from "framer-motion";
 
 function PortfolioTile({ item, onClick, index = 0 }: { item: PortfolioItem; onClick: () => void; index?: number }) {
   // Deterministic animation values based on index to prevent SSR hydration mismatches
-  const duration = 4 + (index % 5); // 4 to 8 seconds
-  const bounceHeight = index % 2 === 0 ? -4 : -3; // Very slight bounce
+  const duration = 5 + (index % 4); // 5 to 8 seconds
+  const yBounce = index % 2 === 0 ? -4 : -3;
+  const xBounce = index % 3 === 0 ? 3 : -2;
+  const rotation = index % 2 === 0 ? 0.3 : -0.3;
 
   return (
     <motion.div
@@ -218,8 +220,10 @@ function PortfolioTile({ item, onClick, index = 0 }: { item: PortfolioItem; onCl
     >
       <motion.div
         animate={{
-          y: [0, bounceHeight, 0],
-          scale: [1, 1.02, 1],
+          y: [0, yBounce, 0],
+          x: [0, xBounce, 0],
+          rotate: [0, rotation, 0],
+          scale: [1, 1.01, 1],
         }}
         transition={{
           duration: duration,
