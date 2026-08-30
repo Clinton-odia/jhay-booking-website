@@ -1,0 +1,70 @@
+const pricingItems = [
+  {
+    name: "Single Cover Art",
+    turnaround: "3–5 days",
+    price: "₦40,000 / $60",
+    desc: "One track, full concept + 2 revisions. High-res final deliverable.",
+  },
+  {
+    name: "EP / Album Art",
+    turnaround: "7–10 days",
+    price: "₦60,000 / $90",
+    desc: "Front cover, back/tracklist, plus social media promo crop variants.",
+  },
+  {
+    name: "Logo / Brand Mark",
+    turnaround: "5–7 days",
+    price: "from ₦35,000",
+    desc: "Primary mark, 2 initial concepts, source files + usage guide.",
+  },
+  {
+    name: "Comic Page",
+    turnaround: "per page · 4–6 days",
+    price: "₦80,000 / $100",
+    desc: "Full layout, pencil line art, flat colors and panel lettering.",
+  },
+  {
+    name: "Motion / Animated Cover",
+    turnaround: "7–14 days",
+    price: "from ₦50,000",
+    desc: "Looping animated MP4/GIF version of a still cover for Spotify Canvas & IG.",
+  },
+];
+
+export default function PricingSection() {
+  return (
+    <section id="prices" className="ticket-section py-[72px] bg-[var(--paper)] text-[var(--ink)]">
+      <div className="wrap">
+        <div className="section-head mb-10">
+          <div className="eyebrow font-mono text-xs text-[var(--red)] tracking-[0.12em] uppercase mb-[18px] flex items-center gap-[10px] before:content-[''] before:w-5 before:h-[2px] before:bg-[var(--red)] before:inline-block">
+            Rates &amp; Specs
+          </div>
+          <h2 className="text-[clamp(32px,5vw,48px)] font-anton uppercase text-[var(--ink)]">
+            Commission Menu
+          </h2>
+        </div>
+        <div className="price-list border-t-2 border-dashed border-[var(--muted)]">
+          {pricingItems.map((item, idx) => (
+            <div
+              key={idx}
+              className="price-row grid grid-cols-[1fr_auto_auto] max-[600px]:grid-cols-1 gap-[18px] max-[600px]:gap-[6px] items-baseline py-5 border-b-2 border-dashed border-[var(--muted)]"
+            >
+              <div className="name font-anton text-[20px] uppercase">
+                {item.name}
+              </div>
+              <div className="turnaround font-mono text-[12px] text-[var(--muted)] uppercase">
+                {item.turnaround}
+              </div>
+              <div className="price font-mono text-[18px] font-bold text-[var(--red)] whitespace-nowrap">
+                {item.price}
+              </div>
+              <div className="desc text-[14px] text-[var(--muted)] col-span-1 mt-1 min-[601px]:col-span-3">
+                {item.desc}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
