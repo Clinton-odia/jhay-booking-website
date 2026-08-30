@@ -203,6 +203,10 @@ export default function PortfolioGrid({ isPreview = false }: PortfolioGridProps)
 import { motion } from "framer-motion";
 
 function PortfolioTile({ item, onClick, index = 0 }: { item: PortfolioItem; onClick: () => void; index?: number }) {
+  // Deterministic animation values based on index to prevent SSR hydration mismatches
+  const duration = 15 + (index % 5) * 2;
+  const rotation = index % 2 === 0 ? 1 : -1;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -212,15 +216,28 @@ function PortfolioTile({ item, onClick, index = 0 }: { item: PortfolioItem; onCl
       onClick={onClick}
       className="group relative aspect-square overflow-hidden bg-[var(--paper-2)] border-2 border-[var(--paper-2)]/20 hover:border-[var(--yellow)] cursor-pointer transition-all duration-200 shadow-md"
     >
-      <Image
-        src={item.imageSrc}
-        alt={item.title}
-        fill
-        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-        className="object-cover block transition-transform duration-300 group-hover:scale-108"
-      />
+      <motion.div
+        animate={{
+          scale: [1, 1.05, 1],
+          rotate: [0, rotation, 0, -rotation, 0],
+        }}
+        transition={{
+          duration: duration,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="absolute inset-0 w-full h-full transition-transform duration-300 group-hover:scale-110"
+      >
+        <Image
+          src={item.imageSrc}
+          alt={item.title}
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          className="object-cover"
+        />
+      </motion.div>
       {/* Overlay on Hover */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/90 via-[var(--ink)]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-4 flex flex-col justify-end">
+      <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/90 via-[var(--ink)]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-4 flex flex-col justify-end z-10">
         <span className="font-mono text-[10px] text-[var(--yellow)] uppercase tracking-wider font-bold">
           {item.categoryLabel}
         </span>
