@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-[var(--ink)] border-t-2 border-[var(--paper-2)] py-10 color-[var(--paper-2)]">
@@ -9,6 +11,12 @@ export default function Footer() {
           Visual Artist &amp; Illustrator · Nigeria
         </div>
         <div className="foot-links flex gap-[20px] font-mono text-[12px] mt-[10px]">
+          <Link href="/portfolio" className="text-[var(--yellow)] hover:underline">
+            Portfolio
+          </Link>
+          <Link href="/blog" className="text-[var(--yellow)] hover:underline">
+            Guides &amp; Blog
+          </Link>
           <a
             href="https://linktr.ee/jhaysanyay"
             target="_blank"
@@ -17,7 +25,7 @@ export default function Footer() {
           >
             Linktree ↗
           </a>
-          <a href="#order" className="text-[var(--yellow)] hover:underline">
+          <a href="/#order" className="text-[var(--yellow)] hover:underline">
             Job Ticket
           </a>
         </div>

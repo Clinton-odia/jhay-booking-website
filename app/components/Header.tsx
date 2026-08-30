@@ -11,9 +11,12 @@ export default function Header() {
           JHAY <span className="text-[var(--red)] font-bold">·</span> SANYAY
         </Link>
 
-        <nav className="flex items-center gap-5 sm:gap-6 font-mono text-xs text-[var(--paper-2)] tracking-widest uppercase">
+        <nav className="flex items-center gap-4 sm:gap-6 font-mono text-xs text-[var(--paper-2)] tracking-widest uppercase">
           <Link href="/portfolio" className="text-[var(--paper)] hover:text-[var(--yellow)] font-bold transition-colors">
             Portfolio
+          </Link>
+          <Link href="/blog" className="hover:text-[var(--yellow)] transition-colors">
+            Guides
           </Link>
           <Link href="/#prices" className="hover:text-[var(--yellow)] transition-colors">
             Prices
