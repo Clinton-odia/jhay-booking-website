@@ -29,6 +29,9 @@ export default function Footer() {
             Job Ticket
           </a>
         </div>
+        <div className="text-[10px] text-[var(--muted)]/50 mt-[20px] tracking-wider uppercase">
+          designed by buildwithclinton
+        </div>
       </div>
     </footer>
   );
